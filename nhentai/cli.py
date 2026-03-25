@@ -40,6 +40,7 @@ def interactive_mode():
     console = get_console()
 
     console.print("[bold]Interactive Mode[/bold]")
+    console.print()
 
     url = Prompt.ask("Enter gallery URL or ID")
     if not url.strip():
@@ -201,6 +202,10 @@ def main():
     )
 
     def progress_callback(current: int, total: int, status: str):
+        # Truncate long status messages to prevent UI breakage
+        max_status_length = console.width - 15  # Leave space for " X/XXX" part
+        if len(status) > max_status_length:
+            status = status[:max_status_length-3] + "..."
         console.print(f"[dim]{status}[/dim] {current}/{total}")
 
     try:

@@ -58,7 +58,6 @@ plugins:
             show_attribute_values: true
             show_symbol_type_toc: true
             merge_init_into_class: true
-            ignore_init_summary: true
             trim_doctest_flags: false
             docstring_section_style: table
             docstring_style: sphinx
