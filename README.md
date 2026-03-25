@@ -70,6 +70,12 @@ nhentai 639456 --translate --token YOUR_TOKEN --engine claude
 
 # Custom output directory and workers
 nhentai 639456 -o ./manga -w 8
+
+# Using proxy list from file
+nhentai 639456 --proxy-list proxies.txt
+
+# Using proxy list from URL
+nhentai 639456 --proxy-list https://example.com/proxies.txt
 ```
 
 ## Documentation

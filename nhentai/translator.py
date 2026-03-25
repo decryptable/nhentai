@@ -75,8 +75,7 @@ class NekoTranslator:
     def _fetch_proxies(url: str | None = None) -> list[str]:
         if not url:
             url = (
-                "https://raw.githubusercontent.com/proxifly/free-proxy-list"
-                "/refs/heads/main/proxies/protocols/socks5/data.txt"
+                "https://raw.githubusercontent.com/ProxyScraper/ProxyScraper/main/http.txt"
             )
         try:
             resp = requests.get(url, timeout=10)

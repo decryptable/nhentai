@@ -1,6 +1,8 @@
-from pathlib import Path
-import tempfile
+import random
 import shutil
+import tempfile
+from collections.abc import Callable
+from pathlib import Path
 
 import requests
 import urllib3
@@ -44,24 +46,27 @@ class Downloader:
         gallery: NHentai,
         output_dir: str | Path = ".",
         workers: int = 4,
-        translator: NekoTranslator = None,
+        translator: NekoTranslator | None = None,
         translate_lang: Language | str = Language.ENGLISH,
         translate_engine: Engine | str = Engine.DEEPL,
         timeout: int = 30,
+        proxy_list: list[str] | None = None,
     ):
         self.gallery = gallery
         self.output_dir = Path(output_dir)
         self.workers = max(1, workers)
-        self.translator = translator
+        self.translator: NekoTranslator | None = translator
         self.translate_lang = Language(translate_lang) if not isinstance(translate_lang, Language) else translate_lang
         self.translate_engine = Engine(translate_engine) if not isinstance(translate_engine, Engine) else translate_engine
         self.timeout = timeout
+        self.proxy_list = proxy_list or []
 
-    def download(self, make_pdf: bool = False) -> list[Path]:
+    def download(self, make_pdf: bool = False, progress_callback: Callable[[int, int, str], None] | None = None) -> list[Path]:
         """
         Download all pages. Returns a list of saved file paths (or a single PDF path if ``make_pdf=True``).
 
         :param make_pdf: Compile pages into a PDF after downloading. Requires Pillow.
+        :param progress_callback: Optional callback to report progress: (current, total, status).
         :raises DownloadError: If a page fails to download.
         :raises RuntimeError: If ``make_pdf=True`` but Pillow is not installed.
         """
@@ -73,10 +78,15 @@ class Downloader:
             tmp_path = Path(tmp_dir)
             urls = self.gallery.get_image_urls()
             results: list[Path | None] = [None] * len(urls)
+            total = len(urls)
+
+            def _update_progress(current: int, status: str):
+                if progress_callback:
+                    progress_callback(current, total, status)
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.workers) as pool:
                 futures = {
-                    pool.submit(self._download_page, url, tmp_path, i + 1): i
+                    pool.submit(self._download_page, url, tmp_path, i + 1, _update_progress): i
                     for i, url in enumerate(urls)
                 }
                 for future in concurrent.futures.as_completed(futures):
@@ -103,16 +113,21 @@ class Downloader:
                 final_paths.append(target)
             return final_paths
 
-    def _download_page(self, url: str, dest_dir: Path, page_num: int) -> Path:
+    def _download_page(self, url: str, dest_dir: Path, page_num: int, progress_callback: Callable[[int, str], None] | None = None) -> Path:
         ext = url.rsplit(".", 1)[-1]
         out_path = dest_dir / f"{page_num:04d}.{ext}"
 
         if out_path.exists():
             return out_path
 
+        if progress_callback:
+            progress_callback(page_num, f"Downloading page {page_num}")
+
         data = self._fetch(url)
 
         if self.translator is not None:
+            if progress_callback:
+                progress_callback(page_num, f"Translating page {page_num}")
             try:
                 data = self.translator.translate_bytes(
                     data,
@@ -125,9 +140,16 @@ class Downloader:
                 pass
 
         out_path.write_bytes(data)
+        if progress_callback:
+            progress_callback(page_num, f"Saved page {page_num}")
         return out_path
 
     def _fetch(self, url: str) -> bytes:
+        proxies = None
+        if self.proxy_list:
+            proxy = random.choice(self.proxy_list)
+            proxies = {"http": proxy, "https": proxy}
+
         try:
             resp = requests.get(
                 url,
@@ -135,6 +157,7 @@ class Downloader:
                 verify=False,
                 timeout=self.timeout,
                 stream=True,
+                proxies=proxies,
             )
             resp.raise_for_status()
             return resp.content
@@ -168,7 +191,7 @@ class Downloader:
         # Sanitize filename (remove characters that might be invalid in some filesystems)
         safe_title = "".join(c for c in title if c.isalnum() or c in (" ", "-", "_")).strip()
         filename = f"{safe_title} ({self.gallery.id}).pdf"
-        
+
         pdf_path = dest_dir / filename
         images[0].save(pdf_path, save_all=True, append_images=images[1:])
         return pdf_path
