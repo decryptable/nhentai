@@ -1203,9 +1203,71 @@
         <p>Fetches and exposes metadata for a single nhentai gallery.</p>
 <p>Accepts either a full URL (<code>https://nhentai.net/g/639456/</code>) or a bare gallery ID (<code>"639456"</code>).</p>
 
-        <p>:param url: Gallery URL or numeric ID string.
-:raises ConnectionError: If the page cannot be fetched.
-:raises ValueError: If gallery data cannot be parsed.</p>
+        
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>url</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Gallery URL or numeric ID string.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ConnectionError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the page cannot be fetched.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If gallery data cannot be parsed.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -1214,6 +1276,33 @@
 
 
 
+                  <details class="mkdocstrings-source">
+                    <summary>Source code in <code>nhentai/nhentai.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="sd">    :param url: Gallery URL or numeric ID string.</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">    :raises ConnectionError: If the page cannot be fetched.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">    :raises ValueError: If gallery data cannot be parsed.</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/g/</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_grabber</span> <span class="o">=</span> <span class="n">Grabber</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_cdn</span> <span class="o">=</span> <span class="n">CDN</span><span class="p">()</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_grabber</span><span class="o">.</span><span class="n">get_html</span><span class="p">())</span><span class="o">.</span><span class="n">parse_gallery_info</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+                  </details>
 
 
 
@@ -1506,6 +1595,27 @@
         <p>Full-resolution image URLs for all pages, in order.</p>
 
 
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>nhentai/nhentai.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#__codelineno-0-91">91</a></span>
+<span class="normal"><a href="#__codelineno-0-92">92</a></span>
+<span class="normal"><a href="#__codelineno-0-93">93</a></span>
+<span class="normal"><a href="#__codelineno-0-94">94</a></span>
+<span class="normal"><a href="#__codelineno-0-95">95</a></span>
+<span class="normal"><a href="#__codelineno-0-96">96</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_image_urls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Full-resolution image URLs for all pages, in order.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_cdn</span><span class="o">.</span><span class="n">get_image_url</span><span class="p">(</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">media_id</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>            <span class="n">ext</span><span class="o">=</span><span class="n">CDN</span><span class="o">.</span><span class="n">ext_from_type</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">])</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>        <span class="p">)</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pages_info</span><span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
     </div>
 
 </div>
@@ -1524,6 +1634,17 @@
         <p>Cover image URL.</p>
 
 
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>nhentai/nhentai.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_cover_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Cover image URL.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="n">ext</span> <span class="o">=</span> <span class="n">CDN</span><span class="o">.</span><span class="n">ext_from_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">][</span><span class="s2">&quot;cover&quot;</span><span class="p">][</span><span class="s2">&quot;t&quot;</span><span class="p">])</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cdn</span><span class="o">.</span><span class="n">get_cover_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">media_id</span><span class="p">,</span> <span class="n">ext</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
     </div>
 
 </div>
@@ -1542,6 +1663,15 @@
         <p>Raw gallery info dict as returned by the API.</p>
 
 
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>nhentai/nhentai.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Raw gallery info dict as returned by the API.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span>
+</code></pre></div></td></tr></table></div>
+            </details>
     </div>
 
 </div>
