@@ -1,0 +1,42 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+labels: ["enhancement"]
+assignees: ["decryptable"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feature requests that include a clear use-case and proposed API are more likely to be accepted.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What problem does this feature solve? What's the current pain point?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How should it work? Include a code example if possible.
+      render: python
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you've considered?
+
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Is this a breaking change?
+      options:
+        - "No"
+        - "Yes"
+        - "Unsure"
+    validations:
+      required: true

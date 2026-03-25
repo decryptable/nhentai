@@ -1,0 +1,52 @@
+from enum import StrEnum
+
+
+class Engine(StrEnum):
+    """Translation engine. Free tier: GOOGLE, DEEPL, AUTO. Higher tiers require a token."""
+
+    GOOGLE     = "google_cloud"
+    DEEPL      = "deepl"
+    AUTO       = "auto"
+    DEEPSEEK   = "deepseekv31"
+    GPT5_MINI  = "gpt5_mini"
+    CLAUDE     = "claude45_sonnet"
+    GPT5       = "gpt5"
+
+
+class Language(StrEnum):
+    """ISO 639-1 target language codes supported by NekoTranslate."""
+
+    ENGLISH    = "en"
+    INDONESIAN = "id"
+    JAPANESE   = "ja"
+    KOREAN     = "ko"
+    CHINESE    = "zh"
+    FRENCH     = "fr"
+    GERMAN     = "de"
+    SPANISH    = "es"
+    PORTUGUESE = "pt"
+    ITALIAN    = "it"
+    DUTCH      = "nl"
+    POLISH     = "pl"
+    RUSSIAN    = "ru"
+    TURKISH    = "tr"
+    ARABIC     = "ar"
+    THAI       = "th"
+    VIETNAMESE = "vi"
+    UKRAINIAN  = "uk"
+    CZECH      = "cs"
+    DANISH     = "da"
+    FINNISH    = "fi"
+    NORWEGIAN  = "no"
+    SWEDISH    = "sv"
+    ROMANIAN   = "ro"
+    HUNGARIAN  = "hu"
+    BULGARIAN  = "bg"
+    GREEK      = "el"
+    SLOVAK     = "sk"
+    SLOVENIAN  = "sl"
+    ESTONIAN   = "et"
+    LATVIAN    = "lv"
+    LITHUANIAN = "lt"
+    CROATIAN   = "hr"
+    ICELANDIC  = "is"

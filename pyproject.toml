@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nhentai"
+version = "0.1.0"
+description = "nhentai downloader with optional NekoTranslate translation and PDF export"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "decryptable", email = "decryptable@users.noreply.github.com" }
+]
+keywords = ["nhentai", "manga", "downloader", "translation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "urllib3>=2.0",
+]
+
+[project.optional-dependencies]
+pdf   = ["Pillow>=10.0"]
+socks = ["requests[socks]"]
+all   = ["Pillow>=10.0", "requests[socks]"]
+dev   = [
+    "pytest>=8.0",
+    "pytest-cov",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
+
+[project.urls]
+Homepage   = "https://github.com/decryptable/nhentai"
+Repository = "https://github.com/decryptable/nhentai"
+Issues     = "https://github.com/decryptable/nhentai/issues"
+Docs       = "https://decryptable.github.io/nhentai"
+
+[project.scripts]
+nhentai = "nhentai.cli:main"
+
+[tool.setuptools.packages.find]
+where   = ["."]
+include = ["nhentai*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["nhentai"]
+omit   = ["nhentai/cli.py"]
