@@ -24,7 +24,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -e ".[all]" mkdocs-material mkdocstrings[python]
+        run: pip install -e ".[all]" mkdocs-material mkdocstrings[python] termynal
 
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force --clean
