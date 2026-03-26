@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 — 2026-03-26
+
+### Added
+- Integrated [**termynal.py**](https://github.com/termynal/termynal.py) for interactive CLI animations in documentation.
+
+### Changed
+- Updated version to 0.1.3
+
 ## 0.1.2 — 2026-03-26
 
 ### Added

@@ -17,7 +17,7 @@ from .translator import ComicTranslator, NekoTranslator
 try:
     __version__ = get_version("nhentai")
 except Exception:
-    __version__ = "0.1.2"
+    __version__ = "0.1.3"
 
 
 def _signal_handler(sig, frame):

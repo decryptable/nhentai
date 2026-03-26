@@ -46,6 +46,13 @@ theme:
 
 plugins:
   - search
+  - termynal:
+      include_assets: true
+      title: "nhentai"
+      buttons: "macos"
+      prompt_literal_start:
+        - "$"
+        - ">"
   - mkdocstrings:
       default_handler: python
       handlers:

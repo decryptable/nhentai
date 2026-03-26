@@ -12,21 +12,21 @@ A Python library to download nhentai galleries with optional manga translation a
 
 ## Installation
 
+<!-- termynal -->
 ```bash
-pip install git+https://github.com/decryptable/nhentai.git
+$ pip install git+https://github.com/decryptable/nhentai.git
+---> 100%
+Successfully installed nhentai-0.1.2
 ```
 
 With optional extras:
 
+<!-- termynal -->
 ```bash
-# PDF support
-pip install "nhentai[pdf] @ git+https://github.com/decryptable/nhentai.git"
-
-# SOCKS proxy support
-pip install "nhentai[socks] @ git+https://github.com/decryptable/nhentai.git"
-
 # Everything
-pip install "nhentai[all] @ git+https://github.com/decryptable/nhentai.git"
+$ pip install "nhentai[all] @ git+https://github.com/decryptable/nhentai.git"
+---> 100%
+Successfully installed nhentai-0.1.2
 ```
 
 ## Quick start

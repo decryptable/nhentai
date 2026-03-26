@@ -2,8 +2,11 @@
 
 ## Installation
 
+<!-- termynal -->
 ```bash
-pip install "nhentai[all] @ git+https://github.com/decryptable/nhentai.git"
+$ pip install git+https://github.com/decryptable/nhentai.git
+---> 100%
+Successfully installed nhentai-0.1.2
 ```
 
 ## Basic download
@@ -69,22 +72,78 @@ pdf_path = dl.download(make_pdf=True)[0]
 print(f"PDF saved to {pdf_path}")
 ```
 
-PDF export requires `Pillow`. Install with `pip install nhentai[pdf]`.
+PDF export requires `Pillow`.
+
+<!-- termynal -->
+```bash
+$ pip install "nhentai[pdf] @ git+https://github.com/decryptable/nhentai.git"
+---> 100%
+Successfully installed Pillow-10.2.0
+```
 
 ## CLI
 
+### Basic Download
+<!-- termynal -->
 ```bash
-# Download only
-nhentai 639456
+$ nhentai 639456
+[Neko's Adventure] (24 pages)
+Downloading... 1/24
+Downloading... 12/24
+Downloading... 24/24
+Done. Saved to: ./639456/639456.pdf
+```
 
-# Translate using Neko (default)
-nhentai 639456 --translate --lang id --engine deepl
+### With Translation (Neko)
+<!-- termynal -->
+```bash
+$ nhentai 639456 --translate --lang id --engine deepl
+[Neko's Adventure] (24 pages)
+Translating (deepl)... 1/24
+Translating (deepl)... 12/24
+Translating (deepl)... 24/24
+Done. Saved to: ./639456/639456.pdf
+```
 
-# Translate using Comic-Translator
-nhentai 639456 --translate --provider comic --engine GPT-5-mini
+### With Translation (Comic-Translator)
+<!-- termynal -->
+```bash
+$ nhentai 639456 --translate --provider comic --engine GPT-5-mini
+[Neko's Adventure] (24 pages)
+Translating (GPT-5-mini)... 1/24
+Translating (GPT-5-mini)... 24/24
+Done. Saved to: ./639456/639456.pdf
+```
 
-# Interactive mode
-nhentai -i
+### Interactive Mode
+<!-- termynal -->
+```bash
+$ nhentai -i
+Interactive Mode
+> Enter gallery URL or ID: 639456
+> Output directory (.): .
+> Parallel download workers (4): 8
+> Translate pages? (y/n): y
+> Translation provider (neko/comic): neko
+> Target language (en/id/jp/zh): id
+> Translation engine (google_cloud/deepl/auto/deepseekv31/gpt5_mini/claude45_sonnet/gpt5): deepl
+> NekoTranslate Bearer token (leave empty to skip): 
+> Generate PDF? (y/n): y
+> Enable verbose logging? (y/n): n
+> Use proxy? (y/n): n
+[Neko's Adventure] (24 pages)
+Done. Saved to: ./639456/639456.pdf
+```
+
+### Help
+<!-- termynal -->
+```bash
+$ nhentai --help
+usage: nhentai [-h] [--version] [url] [-o OUTPUT] [-w WORKERS] [--translate] 
+               [--provider {neko,comic}] [--lang {en,id,jp,zh}]
+               [--engine ENGINE] [--token TOKEN] [--no-pdf] [--interactive]
+
+nhentai downloader with optional translation
 ```
 
 ## Engines
