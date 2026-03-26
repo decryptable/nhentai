@@ -477,10 +477,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authenticated" class="md-nav__link">
+  <a href="#nekotranslate-default" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authenticated
+        NekoTranslate (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comic-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comic-Translator
       
     </span>
   </a>
@@ -522,6 +533,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Engines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nekoengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NekoEngine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comicengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ComicEngine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -904,10 +943,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authenticated" class="md-nav__link">
+  <a href="#nekotranslate-default" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authenticated
+        NekoTranslate (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comic-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comic-Translator
       
     </span>
   </a>
@@ -950,6 +1000,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Engines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nekoengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NekoEngine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comicengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ComicEngine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -988,25 +1066,38 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> pages to </span><span class="si">{</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="with-translation">With translation<a class="headerlink" href="#with-translation" title="Permanent link">&para;</a></h2>
-<p>Translation uses <a href="https://nekotranslate.ai">NekoTranslate</a>.
-Anonymous mode is free but quota is per-IP. The library scans proxies automatically
-to find one with remaining credits.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">NekoTranslator</span><span class="p">,</span> <span class="n">Engine</span><span class="p">,</span> <span class="n">Language</span>
+<p>The library supports multiple translation providers.</p>
+<h3 id="nekotranslate-default"><a href="https://nekotranslate.ai">NekoTranslate</a> (Default)<a class="headerlink" href="#nekotranslate-default" title="Permanent link">&para;</a></h3>
+<p>Anonymous mode is free but quota is per-IP. The library rotates proxies automatically.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">NekoTranslator</span><span class="p">,</span> <span class="n">NekoEngine</span><span class="p">,</span> <span class="n">Language</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">NekoTranslator</span><span class="p">()</span>        <span class="c1"># anonymous, auto proxy</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">NekoTranslator</span><span class="p">()</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">gallery</span><span class="p">,</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">translator</span><span class="o">=</span><span class="n">translator</span><span class="p">,</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">translate_lang</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">INDONESIAN</span><span class="p">,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">Engine</span><span class="o">.</span><span class="n">DEEPL</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">NekoEngine</span><span class="o">.</span><span class="n">DEEPL</span><span class="p">,</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="authenticated">Authenticated<a class="headerlink" href="#authenticated" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">NekoTranslator</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">&quot;YOUR_BEARER_TOKEN&quot;</span><span class="p">)</span>
+<h3 id="comic-translator"><a href="https://comictranslator.com">Comic-Translator</a><a class="headerlink" href="#comic-translator" title="Permanent link">&para;</a></h3>
+<p>Excellent for manga-style translation with visual text replacement. Faster via direct URL translation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">ComicTranslator</span><span class="p">,</span> <span class="n">ComicEngine</span><span class="p">,</span> <span class="n">Language</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">ComicTranslator</span><span class="p">()</span> <span class="c1"># auto guest account</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">gallery</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">translator</span><span class="o">=</span><span class="n">translator</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">translate_lang</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">ENGLISH</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">ComicEngine</span><span class="o">.</span><span class="n">GPT5_MINI</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
 </code></pre></div>
 <h2 id="export-to-pdf">Export to PDF<a class="headerlink" href="#export-to-pdf" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">pdf_path</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">make_pdf</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -1017,16 +1108,17 @@ to find one with remaining credits.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Download only</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>nhentai<span class="w"> </span><span class="m">639456</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Translate to Indonesian</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--lang<span class="w"> </span>id
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Translate using Neko (default)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--lang<span class="w"> </span>id<span class="w"> </span>--engine<span class="w"> </span>deepl
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Translate and export PDF</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--lang<span class="w"> </span>id<span class="w"> </span>--pdf
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Translate using Comic-Translator</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--provider<span class="w"> </span>comic<span class="w"> </span>--engine<span class="w"> </span>GPT-5-mini
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Custom engine, output directory, and workers</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--engine<span class="w"> </span>google_cloud<span class="w"> </span>-o<span class="w"> </span>./manga<span class="w"> </span>-w<span class="w"> </span><span class="m">8</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Interactive mode</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>nhentai<span class="w"> </span>-i
 </code></pre></div>
 <h2 id="engines">Engines<a class="headerlink" href="#engines" title="Permanent link">&para;</a></h2>
+<h3 id="nekoengine">NekoEngine<a class="headerlink" href="#nekoengine" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1038,46 +1130,88 @@ to find one with remaining credits.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>Engine.GOOGLE</code></td>
+<td><code>NekoEngine.GOOGLE</code></td>
 <td><code>google_cloud</code></td>
 <td>Google Translate</td>
 <td>No</td>
 </tr>
 <tr>
-<td><code>Engine.DEEPL</code></td>
+<td><code>NekoEngine.DEEPL</code></td>
 <td><code>deepl</code></td>
 <td>DeepL</td>
 <td>No</td>
 </tr>
 <tr>
-<td><code>Engine.AUTO</code></td>
+<td><code>NekoEngine.AUTO</code></td>
 <td><code>auto</code></td>
 <td>Auto-select</td>
 <td>No</td>
 </tr>
 <tr>
-<td><code>Engine.DEEPSEEK</code></td>
+<td><code>NekoEngine.DEEPSEEK</code></td>
 <td><code>deepseekv31</code></td>
 <td>DeepSeek-V3.1</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td><code>Engine.GPT5_MINI</code></td>
+<td><code>NekoEngine.GPT5_MINI</code></td>
 <td><code>gpt5_mini</code></td>
 <td>GPT-5 mini</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td><code>Engine.CLAUDE</code></td>
+<td><code>NekoEngine.CLAUDE</code></td>
 <td><code>claude45_sonnet</code></td>
 <td>Claude Sonnet 4.5</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td><code>Engine.GPT5</code></td>
+<td><code>NekoEngine.GPT5</code></td>
 <td><code>gpt5</code></td>
 <td>GPT-5</td>
 <td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comicengine">ComicEngine<a class="headerlink" href="#comicengine" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Value</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ComicEngine.GEMINI_FLASH</code></td>
+<td><code>Gemini2.5Flash</code></td>
+<td>Gemini 2.5 Flash</td>
+</tr>
+<tr>
+<td><code>ComicEngine.GPT5_MINI</code></td>
+<td><code>GPT-5-mini</code></td>
+<td>GPT-5.1 mini</td>
+</tr>
+<tr>
+<td><code>ComicEngine.GPT5</code></td>
+<td><code>GPT-5.1</code></td>
+<td>GPT-5.1</td>
+</tr>
+<tr>
+<td><code>ComicEngine.DEEPSEEK</code></td>
+<td><code>Deepseek</code></td>
+<td>Deepseek</td>
+</tr>
+<tr>
+<td><code>ComicEngine.GROK</code></td>
+<td><code>Grok4fast</code></td>
+<td>Grok v4 fast</td>
+</tr>
+<tr>
+<td><code>ComicEngine.KIMI</code></td>
+<td><code>KimiK2</code></td>
+<td>Kimi K2</td>
 </tr>
 </tbody>
 </table>
