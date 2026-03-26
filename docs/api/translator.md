@@ -1,43 +1,33 @@
-# NekoTranslator
+The library provides multiple translation providers that implement the `BaseTranslator` interface.
 
-Client for the [NekoTranslate](https://nekotranslate.ai) API.
-
-Anonymous mode uses free per-IP quota and rotates proxies automatically.
-Pass a `token` for authenticated (higher-quota) requests.
+### NekoTranslator
+Client for the [NekoTranslate](https://nekotranslate.ai) API. Supports anonymous mode with automatic proxy rotation.
 
 ```python
-from nhentai import NekoTranslator
+from nhentai import NekoTranslator, NekoEngine, Language
 
-# Anonymous — scans proxy list for available quota
-translator = NekoTranslator()
-
-# Authenticated
-translator = NekoTranslator(token="YOUR_BEARER_TOKEN")
-
-# Custom proxy source
-translator = NekoTranslator(
-    proxy_list_url="https://example.com/proxies.txt"
-)
-
-# Explicit proxy list
-translator = NekoTranslator(
-    proxies=["socks5://1.2.3.4:1080", "1.2.3.4:8080"]
-)
-
-# Translate a file — returns raw bytes
-data = translator.translate_file("page.jpg", tgt_lang="id", engine="deepl")
-
-# Translate raw bytes
-data = translator.translate_bytes(image_bytes, filename="page.jpg", tgt_lang="id")
-
-# Check balance
-info = translator.get_balance()
-# {"email": None, "plan": "Free", "level": 0, "quota": 12}
+translator = NekoTranslator(token="YOUR_BEARER_TOKEN") # token is optional
+data = translator.translate_file("page.jpg", tgt_lang=Language.INDONESIAN, engine=NekoEngine.DEEPL)
 ```
 
 ---
 
 ::: nhentai.translator.NekoTranslator
+
+### ComicTranslator
+Client for the [Comic-Translator](https://comictranslator.com) API. Automatically handles guest registration and supports direct URL translation.
+
+```python
+from nhentai import ComicTranslator, ComicEngine, Language
+
+translator = ComicTranslator()
+# Direct URL translation (Faster)
+data = translator.translate_url("https://i.nhentai.net/...", tgt_lang=Language.ENGLISH, engine=ComicEngine.GEMINI_FLASH)
+```
+
+---
+
+::: nhentai.translator.ComicTranslator
 
 ---
 

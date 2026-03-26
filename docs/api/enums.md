@@ -1,33 +1,28 @@
 # Enums
 
-`Engine` and `Language` are `str` subclasses, so they work transparently
+`NekoEngine`, `ComicEngine`, `Provider` and `Language` are `str` subclasses, so they work transparently
 as plain strings in any context (requests, JSON, `str` comparisons).
 
 ```python
-from nhentai import Engine, Language
+from nhentai import NekoEngine, ComicEngine, Provider, Language
 
 # Both forms are valid anywhere an engine/language is accepted
-Engine.DEEPL == "deepl"          # True
+NekoEngine.DEEPL == "deepl"          # True
+Provider.COMIC == "comic"            # True
 Language("id") is Language.INDONESIAN  # True
-
-# IDE autocomplete works on all members
-Engine.GOOGLE
-Engine.DEEPL
-Engine.AUTO
-Engine.DEEPSEEK
-Engine.GPT5_MINI
-Engine.CLAUDE
-Engine.GPT5
-
-Language.ENGLISH
-Language.INDONESIAN
-Language.JAPANESE
-# ... and 30+ more
 ```
 
 ---
 
-::: nhentai.enums.Engine
+::: nhentai.enums.Provider
+
+---
+
+::: nhentai.enums.NekoEngine
+
+---
+
+::: nhentai.enums.ComicEngine
 
 ---
 

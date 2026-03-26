@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.2 — 2026-03-26
+
+### Added
+- New **Comic-Translator** provider supporting `/v3` API.
+- Direct URL translation in `Downloader` (much faster as it avoids re-uploading).
+- Interactive mode (`-i`) for CLI with provider/engine selection.
+- `Provider` enum to separate translation source from AI engine.
+- `ComicEngine` and `NekoEngine` for provider-specific model selection.
+
+### Changed
+- Refactored `nhentai/translator.py` into `nhentai/providers/` package for better maintainability.
+- Updated `Downloader` to automatically attempt the fastest translation method first.
+- Fixed `ruff` linting and improved test coverage to 80%+.
+
 ## 0.1.1 — 2026-03-26
 
 ### Added

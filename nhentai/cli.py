@@ -3,6 +3,7 @@ import logging
 import os
 import signal
 import sys
+from importlib.metadata import version as get_version
 
 from rich.console import Console
 from rich.logging import RichHandler
@@ -12,6 +13,11 @@ from .downloader import Downloader, DownloadError
 from .enums import ComicEngine, Language, NekoEngine, Provider
 from .nhentai import NHentai
 from .translator import ComicTranslator, NekoTranslator
+
+try:
+    __version__ = get_version("nhentai")
+except Exception:
+    __version__ = "0.1.2"
 
 
 def _signal_handler(sig, frame):
@@ -153,6 +159,7 @@ def main():
         prog="nhentai",
         description="nhentai downloader with optional translation",
     )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("url", nargs="?", help="Gallery URL or ID (e.g. 639456 or https://nhentai.net/g/639456/)")
     parser.add_argument("-o", "--output", default=".", help="Output directory (default: .)")
     parser.add_argument("-w", "--workers", type=int, default=4, help="Parallel download workers (default: 4)")
