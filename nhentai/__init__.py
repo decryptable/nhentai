@@ -1,19 +1,22 @@
 from .cdn import CDN
 from .downloader import Downloader, DownloadError
-from .enums import Engine, Language
+from .enums import ComicEngine, Language, NekoEngine, Provider
 from .grabber import Grabber
 from .nhentai import NHentai
 from .parser import Parser
-from .translator import NekoTranslator, TranslationError
+from .translator import ComicTranslator, NekoTranslator, TranslationError
 
 __all__ = [
     "NHentai",
     "Grabber",
     "Parser",
     "CDN",
-    "Engine",
+    "NekoEngine",
+    "ComicEngine",
     "Language",
+    "Provider",
     "NekoTranslator",
+    "ComicTranslator",
     "TranslationError",
     "Downloader",
     "DownloadError",

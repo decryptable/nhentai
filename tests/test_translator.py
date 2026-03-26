@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 from unittest.mock import patch, MagicMock, mock_open, call
 from nhentai.translator import NekoTranslator, TranslationError
-from nhentai.enums import Engine, Language
+from nhentai.enums import NekoEngine, Language
 import requests
 
 
@@ -39,14 +39,14 @@ def test_no_token_no_auth_header(translator):
 
 
 def test_parse_proxy_plain():
-    from nhentai.translator import _parse_proxy
+    from nhentai.providers.neko import _parse_proxy
     p = _parse_proxy("1.2.3.4:8080")
     assert p["http"] == "http://1.2.3.4:8080"
     assert p["https"] == "http://1.2.3.4:8080"
 
 
 def test_parse_proxy_socks5():
-    from nhentai.translator import _parse_proxy
+    from nhentai.providers.neko import _parse_proxy
     p = _parse_proxy("socks5://1.2.3.4:1080")
     assert p["http"] == "socks5://1.2.3.4:1080"
 
@@ -92,8 +92,8 @@ def test_translate_file_success(translator, tmp_path):
     result_bytes = b"translated_image"
 
     with patch.object(translator, "_request", side_effect=[upload_resp, poll_resp]), \
-         patch("nhentai.translator.requests.get", return_value=_resp(content=result_bytes)):
-        result = translator.translate_file(img, tgt_lang=Language.ENGLISH, engine=Engine.DEEPL)
+         patch("nhentai.providers.neko.requests.get", return_value=_resp(content=result_bytes)):
+        result = translator.translate_file(img, tgt_lang=Language.ENGLISH, engine=NekoEngine.DEEPL)
 
     assert result == result_bytes
 
@@ -129,7 +129,7 @@ def test_translate_bytes_success(translator, tmp_path):
 def test_find_proxy_with_quota_found(tmp_path):
     with patch.object(NekoTranslator, "_fetch_proxies", return_value=["1.2.3.4:1080"]):
         t = NekoTranslator()
-    with patch("nhentai.translator.requests.get", return_value=_resp({"quota": 10})):
+    with patch("nhentai.providers.neko.requests.get", return_value=_resp({"quota": 10})):
         proxy = t.find_proxy_with_quota()
     assert proxy is not None
 
@@ -137,6 +137,6 @@ def test_find_proxy_with_quota_found(tmp_path):
 def test_find_proxy_with_quota_none_found(tmp_path):
     with patch.object(NekoTranslator, "_fetch_proxies", return_value=["1.2.3.4:1080"]):
         t = NekoTranslator()
-    with patch("nhentai.translator.requests.get", return_value=_resp({"quota": 0})):
+    with patch("nhentai.providers.neko.requests.get", return_value=_resp({"quota": 0})):
         proxy = t.find_proxy_with_quota()
     assert proxy is None

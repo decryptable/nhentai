@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from nhentai.downloader import Downloader, DownloadError
-from nhentai.enums import Engine, Language
+from nhentai.enums import Language
 import requests
 
 
@@ -71,7 +71,7 @@ def test_download_with_translation(tmp_path):
             output_dir=tmp_path,
             translator=mock_translator,
             translate_lang=Language.INDONESIAN,
-            translate_engine=Engine.DEEPL,
+            translate_engine="deepl",
         )
         paths = dl.download()
 
@@ -126,4 +126,4 @@ def test_enum_normalization_from_string(tmp_path):
     gallery = _make_gallery(1)
     dl = Downloader(gallery, translate_lang="id", translate_engine="deepl")
     assert dl.translate_lang is Language.INDONESIAN
-    assert dl.translate_engine is Engine.DEEPL
+    assert dl.translate_engine == "deepl"

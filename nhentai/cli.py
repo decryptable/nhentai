@@ -9,9 +9,9 @@ from rich.logging import RichHandler
 from rich.prompt import Confirm, Prompt
 
 from .downloader import Downloader, DownloadError
-from .enums import Engine, Language
+from .enums import ComicEngine, Language, NekoEngine, Provider
 from .nhentai import NHentai
-from .translator import NekoTranslator
+from .translator import ComicTranslator, NekoTranslator
 
 
 def _signal_handler(sig, frame):
@@ -61,21 +61,30 @@ def interactive_mode():
     translate = Confirm.ask("Translate pages?", default=False)
 
     lang = Language.ENGLISH.value
-    engine = Engine.DEEPL.value
+    engine = None
+    provider = Provider.NEKO.value
     token = None
 
     if translate:
+        provider = Prompt.ask(
+            "Translation provider",
+            choices=[p.value for p in Provider],
+            default=Provider.NEKO.value
+        )
         lang = Prompt.ask(
             "Target language",
-            choices=[lang.value for lang in Language],
+            choices=[lang_choice.value for lang_choice in Language],
             default=Language.ENGLISH.value
         )
+        engines = [e.value for e in NekoEngine] if provider == Provider.NEKO.value else [e.value for e in ComicEngine]
+        default_engine = NekoEngine.DEEPL.value if provider == Provider.NEKO.value else ComicEngine.GPT5_MINI.value
         engine = Prompt.ask(
             "Translation engine",
-            choices=[e.value for e in Engine],
-            default=Engine.DEEPL.value
+            choices=engines,
+            default=default_engine
         )
-        token = Prompt.ask("NekoTranslate Bearer token (leave empty to skip)", password=True)
+        if provider == Provider.NEKO.value:
+            token = Prompt.ask("NekoTranslate Bearer token (leave empty to skip)", password=True)
 
     make_pdf = Confirm.ask("Generate PDF?", default=True)
     verbose = Confirm.ask("Enable verbose logging?", default=False)
@@ -97,6 +106,7 @@ def interactive_mode():
         output=output,
         workers=workers,
         translate=translate,
+        provider=provider,
         lang=lang,
         engine=engine,
         token=token,
@@ -130,8 +140,8 @@ def parse_proxy_list(path_or_url: str, default_type: str = "http"):
                 proxies.append(line)
             else:
                 proxies.append(f"{default_type}://{line}")
-    except Exception as exc:
-        logging.warning(f"Failed to load proxy list: {exc}")
+    except Exception as e:
+        logging.warning(f"Failed to load proxy list: {e}")
     return proxies
 
 
@@ -147,15 +157,20 @@ def main():
     parser.add_argument("-o", "--output", default=".", help="Output directory (default: .)")
     parser.add_argument("-w", "--workers", type=int, default=4, help="Parallel download workers (default: 4)")
     parser.add_argument("--translate", action="store_true", help="Translate pages before saving")
+    parser.add_argument(
+        "--provider", default=Provider.NEKO.value,
+        choices=[p.value for p in Provider],
+        metavar="PROVIDER",
+        help=f"Translation provider (default: {Provider.NEKO.value})"
+    )
     parser.add_argument("--lang", default=Language.ENGLISH.value,
                         choices=[lang.value for lang in Language],
                         metavar="LANG",
                         help=f"Target language (default: {Language.ENGLISH.value})")
     parser.add_argument(
-        "--engine", default=Engine.DEEPL.value,
-        choices=[e.value for e in Engine],
+        "--engine", default=None,
         metavar="ENGINE",
-        help=f"Translation engine (default: {Engine.DEEPL.value}). Choices: {', '.join(e.value for e in Engine)}"
+        help=f"Translation engine (default: {NekoEngine.DEEPL.value} for Neko, {ComicEngine.GPT5_MINI.value} for Comic)"
     )
     parser.add_argument("--token", default=None, help="NekoTranslate Bearer token")
     parser.add_argument("--no-pdf", action="store_true", help="Skip PDF generation")
@@ -187,7 +202,14 @@ def main():
 
     translator = None
     if args.translate:
-        translator = NekoTranslator(token=args.token)
+        if args.provider == Provider.COMIC:
+            translator = ComicTranslator()
+            if args.engine is None:
+                args.engine = ComicEngine.GPT5_MINI.value
+        else:
+            translator = NekoTranslator(token=args.token)
+            if args.engine is None:
+                args.engine = NekoEngine.DEEPL.value
 
     proxy_list = parse_proxy_list(args.proxy_list, args.proxy_type) if args.proxy_list else []
 

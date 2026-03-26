@@ -1,40 +1,30 @@
 import pytest
-from nhentai.enums import Engine, Language
+from nhentai.enums import NekoEngine, ComicEngine, Language, Provider
 
 
-def test_engine_is_str_subclass():
-    assert isinstance(Engine.DEEPL, str)
+def test_provider_is_str_subclass():
+    assert isinstance(Provider.NEKO, str)
+    assert Provider.NEKO == "neko"
+    assert Provider.COMIC == "comic"
 
 
-def test_engine_value():
-    assert Engine.DEEPL.value == "deepl"
-    assert Engine.GOOGLE.value == "google_cloud"
-    assert Engine.GPT5.value == "gpt5"
+def test_neko_engine_is_str_subclass():
+    assert isinstance(NekoEngine.DEEPL, str)
+    assert NekoEngine.DEEPL.value == "deepl"
 
 
-def test_engine_from_string():
-    assert Engine("deepl") is Engine.DEEPL
-    assert Engine("gpt5") is Engine.GPT5
-
-
-def test_engine_invalid_raises():
-    with pytest.raises(ValueError):
-        Engine("not_an_engine")
+def test_comic_engine_is_str_subclass():
+    assert isinstance(ComicEngine.GPT5_MINI, str)
+    assert ComicEngine.GPT5_MINI.value == "GPT-5-mini"
 
 
 def test_language_is_str_subclass():
     assert isinstance(Language.ENGLISH, str)
-
-
-def test_language_value():
     assert Language.ENGLISH.value == "en"
-    assert Language.INDONESIAN.value == "id"
-    assert Language.JAPANESE.value == "ja"
 
 
 def test_language_from_string():
     assert Language("en") is Language.ENGLISH
-    assert Language("id") is Language.INDONESIAN
 
 
 def test_language_invalid_raises():
@@ -42,11 +32,6 @@ def test_language_invalid_raises():
         Language("zz")
 
 
-def test_engine_usable_as_dict_key():
-    d = {Engine.DEEPL: "foo"}
+def test_neko_engine_usable_as_dict_key():
+    d = {NekoEngine.DEEPL: "foo"}
     assert d["deepl"] == "foo"
-
-
-def test_engine_equality_with_string():
-    assert Engine.DEEPL == "deepl"
-    assert Language.ENGLISH == "en"

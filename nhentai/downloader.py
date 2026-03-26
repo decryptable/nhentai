@@ -3,13 +3,14 @@ import shutil
 import tempfile
 from collections.abc import Callable
 from pathlib import Path
+from typing import Any
 
 import requests
 import urllib3
 
-from .enums import Engine, Language
+from .enums import Language
 from .nhentai import NHentai
-from .translator import NekoTranslator, TranslationError
+from .translator import TranslationError
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -46,18 +47,18 @@ class Downloader:
         gallery: NHentai,
         output_dir: str | Path = ".",
         workers: int = 4,
-        translator: NekoTranslator | None = None,
+        translator: Any | None = None,
         translate_lang: Language | str = Language.ENGLISH,
-        translate_engine: Engine | str = Engine.DEEPL,
+        translate_engine: str | Any = "deepl",
         timeout: int = 30,
         proxy_list: list[str] | None = None,
     ):
         self.gallery = gallery
         self.output_dir = Path(output_dir)
         self.workers = max(1, workers)
-        self.translator: NekoTranslator | None = translator
+        self.translator: Any | None = translator
         self.translate_lang = Language(translate_lang) if not isinstance(translate_lang, Language) else translate_lang
-        self.translate_engine = Engine(translate_engine) if not isinstance(translate_engine, Engine) else translate_engine
+        self.translate_engine = translate_engine
         self.timeout = timeout
         self.proxy_list = proxy_list or []
 
@@ -119,6 +120,23 @@ class Downloader:
 
         if out_path.exists():
             return out_path
+
+        # Try direct URL translation if supported (faster)
+        if self.translator is not None and hasattr(self.translator, "translate_url"):
+            if progress_callback:
+                progress_callback(page_num, f"Translating page {page_num} (direct)")
+            try:
+                data = self.translator.translate_url(
+                    url,
+                    tgt_lang=self.translate_lang,
+                    engine=self.translate_engine,
+                    referer="https://nhentai.net/"
+                )
+                out_path = dest_dir / f"{page_num:04d}_translated.jpg"
+                out_path.write_bytes(data)
+                return out_path
+            except (TranslationError, ConnectionError, Exception):
+                pass
 
         if progress_callback:
             progress_callback(page_num, f"Downloading page {page_num}")
