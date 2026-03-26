@@ -523,6 +523,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-download_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Download
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-translation-neko" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Translation (Neko)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-translation-comic-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Translation (Comic-Translator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -989,6 +1050,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-download_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Download
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-translation-neko" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Translation (Neko)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-translation-comic-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Translation (Comic-Translator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1052,71 +1174,76 @@
 
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;nhentai[all] @ git+https://github.com/decryptable/nhentai.git&quot;</span>
-</code></pre></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">pip install git+https://github.com/decryptable/nhentai.git</span><span data-ty="progress"></span><span data-ty>Successfully installed nhentai-0.1.2<br></span></div>
+
 <h2 id="basic-download">Basic download<a class="headerlink" href="#basic-download" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>          <span class="c1"># accepts URL or bare ID</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">gallery</span><span class="o">.</span><span class="n">title</span><span class="p">[</span><span class="s2">&quot;pretty&quot;</span><span class="p">])</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gallery</span><span class="o">.</span><span class="n">num_pages</span><span class="si">}</span><span class="s2"> pages, </span><span class="si">{</span><span class="n">gallery</span><span class="o">.</span><span class="n">num_favorites</span><span class="si">}</span><span class="s2"> favorites&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span><span class="n">gallery</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> pages to </span><span class="si">{</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>          <span class="c1"># accepts URL or bare ID</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">gallery</span><span class="o">.</span><span class="n">title</span><span class="p">[</span><span class="s2">&quot;pretty&quot;</span><span class="p">])</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gallery</span><span class="o">.</span><span class="n">num_pages</span><span class="si">}</span><span class="s2"> pages, </span><span class="si">{</span><span class="n">gallery</span><span class="o">.</span><span class="n">num_favorites</span><span class="si">}</span><span class="s2"> favorites&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span><span class="n">gallery</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> pages to </span><span class="si">{</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="with-translation">With translation<a class="headerlink" href="#with-translation" title="Permanent link">&para;</a></h2>
 <p>The library supports multiple translation providers.</p>
 <h3 id="nekotranslate-default"><a href="https://nekotranslate.ai">NekoTranslate</a> (Default)<a class="headerlink" href="#nekotranslate-default" title="Permanent link">&para;</a></h3>
 <p>Anonymous mode is free but quota is per-IP. The library rotates proxies automatically.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">NekoTranslator</span><span class="p">,</span> <span class="n">NekoEngine</span><span class="p">,</span> <span class="n">Language</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">NekoTranslator</span><span class="p">,</span> <span class="n">NekoEngine</span><span class="p">,</span> <span class="n">Language</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">NekoTranslator</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">gallery</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">translator</span><span class="o">=</span><span class="n">translator</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">translate_lang</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">INDONESIAN</span><span class="p">,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">NekoEngine</span><span class="o">.</span><span class="n">DEEPL</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="comic-translator"><a href="https://comictranslator.com">Comic-Translator</a><a class="headerlink" href="#comic-translator" title="Permanent link">&para;</a></h3>
+<p>Excellent for manga-style translation with visual text replacement. Faster via direct URL translation.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">ComicTranslator</span><span class="p">,</span> <span class="n">ComicEngine</span><span class="p">,</span> <span class="n">Language</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">NekoTranslator</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">ComicTranslator</span><span class="p">()</span> <span class="c1"># auto guest account</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">gallery</span><span class="p">,</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">translator</span><span class="o">=</span><span class="n">translator</span><span class="p">,</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">translate_lang</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">INDONESIAN</span><span class="p">,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">NekoEngine</span><span class="o">.</span><span class="n">DEEPL</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">translate_lang</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">ENGLISH</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">ComicEngine</span><span class="o">.</span><span class="n">GPT5_MINI</span><span class="p">,</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="comic-translator"><a href="https://comictranslator.com">Comic-Translator</a><a class="headerlink" href="#comic-translator" title="Permanent link">&para;</a></h3>
-<p>Excellent for manga-style translation with visual text replacement. Faster via direct URL translation.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nhentai</span><span class="w"> </span><span class="kn">import</span> <span class="n">NHentai</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">ComicTranslator</span><span class="p">,</span> <span class="n">ComicEngine</span><span class="p">,</span> <span class="n">Language</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">gallery</span> <span class="o">=</span> <span class="n">NHentai</span><span class="p">(</span><span class="s2">&quot;639456&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">translator</span> <span class="o">=</span> <span class="n">ComicTranslator</span><span class="p">()</span> <span class="c1"># auto guest account</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">dl</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">gallery</span><span class="p">,</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./downloads&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">translator</span><span class="o">=</span><span class="n">translator</span><span class="p">,</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">translate_lang</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">ENGLISH</span><span class="p">,</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">translate_engine</span><span class="o">=</span><span class="n">ComicEngine</span><span class="o">.</span><span class="n">GPT5_MINI</span><span class="p">,</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">)</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">paths</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
-</code></pre></div>
 <h2 id="export-to-pdf">Export to PDF<a class="headerlink" href="#export-to-pdf" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">pdf_path</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">make_pdf</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDF saved to </span><span class="si">{</span><span class="n">pdf_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pdf_path</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">make_pdf</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDF saved to </span><span class="si">{</span><span class="n">pdf_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>PDF export requires <code>Pillow</code>. Install with <code>pip install nhentai[pdf]</code>.</p>
+<p>PDF export requires <code>Pillow</code>.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">pip install &quot;nhentai[pdf] @ git+https://github.com/decryptable/nhentai.git&quot;</span><span data-ty="progress"></span><span data-ty>Successfully installed Pillow-10.2.0<br></span></div>
+
 <h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Download only</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>nhentai<span class="w"> </span><span class="m">639456</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Translate using Neko (default)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--lang<span class="w"> </span>id<span class="w"> </span>--engine<span class="w"> </span>deepl
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Translate using Comic-Translator</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>nhentai<span class="w"> </span><span class="m">639456</span><span class="w"> </span>--translate<span class="w"> </span>--provider<span class="w"> </span>comic<span class="w"> </span>--engine<span class="w"> </span>GPT-5-mini
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Interactive mode</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>nhentai<span class="w"> </span>-i
-</code></pre></div>
+<h3 id="basic-download_1">Basic Download<a class="headerlink" href="#basic-download_1" title="Permanent link">&para;</a></h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">nhentai 639456</span><span data-ty>[Neko's Adventure] (24 pages)<br>Downloading... 1/24<br>Downloading... 12/24<br>Downloading... 24/24<br>Done. Saved to: ./639456/639456.pdf<br></span></div>
+
+<h3 id="with-translation-neko">With Translation (Neko)<a class="headerlink" href="#with-translation-neko" title="Permanent link">&para;</a></h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">nhentai 639456 --translate --lang id --engine deepl</span><span data-ty>[Neko's Adventure] (24 pages)<br>Translating (deepl)... 1/24<br>Translating (deepl)... 12/24<br>Translating (deepl)... 24/24<br>Done. Saved to: ./639456/639456.pdf<br></span></div>
+
+<h3 id="with-translation-comic-translator">With Translation (Comic-Translator)<a class="headerlink" href="#with-translation-comic-translator" title="Permanent link">&para;</a></h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">nhentai 639456 --translate --provider comic --engine GPT-5-mini</span><span data-ty>[Neko's Adventure] (24 pages)<br>Translating (GPT-5-mini)... 1/24<br>Translating (GPT-5-mini)... 24/24<br>Done. Saved to: ./639456/639456.pdf<br></span></div>
+
+<h3 id="interactive-mode">Interactive Mode<a class="headerlink" href="#interactive-mode" title="Permanent link">&para;</a></h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">nhentai -i</span><span data-ty>Interactive Mode</span><span data-ty="input" data-ty-prompt="&gt;">Enter gallery URL or ID: 639456</span><span data-ty="input" data-ty-prompt="&gt;">Output directory (.): .</span><span data-ty="input" data-ty-prompt="&gt;">Parallel download workers (4): 8</span><span data-ty="input" data-ty-prompt="&gt;">Translate pages? (y/n): y</span><span data-ty="input" data-ty-prompt="&gt;">Translation provider (neko/comic): neko</span><span data-ty="input" data-ty-prompt="&gt;">Target language (en/id/jp/zh): id</span><span data-ty="input" data-ty-prompt="&gt;">Translation engine (google_cloud/deepl/auto/deepseekv31/gpt5_mini/claude45_sonnet/gpt5): deepl</span><span data-ty="input" data-ty-prompt="&gt;">NekoTranslate Bearer token (leave empty to skip): </span><span data-ty="input" data-ty-prompt="&gt;">Generate PDF? (y/n): y</span><span data-ty="input" data-ty-prompt="&gt;">Enable verbose logging? (y/n): n</span><span data-ty="input" data-ty-prompt="&gt;">Use proxy? (y/n): n</span><span data-ty>[Neko's Adventure] (24 pages)<br>Done. Saved to: ./639456/639456.pdf<br></span></div>
+
+<h3 id="help">Help<a class="headerlink" href="#help" title="Permanent link">&para;</a></h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="nhentai"><span data-ty="input" data-ty-prompt="$">nhentai --help</span><span data-ty>usage: nhentai [-h] [--version] [url] [-o OUTPUT] [-w WORKERS] [--translate] <br>               [--provider {neko,comic}] [--lang {en,id,jp,zh}]<br>               [--engine ENGINE] [--token TOKEN] [--no-pdf] [--interactive]<br><br>nhentai downloader with optional translation<br></span></div>
+
 <h2 id="engines">Engines<a class="headerlink" href="#engines" title="Permanent link">&para;</a></h2>
 <h3 id="nekoengine">NekoEngine<a class="headerlink" href="#nekoengine" title="Permanent link">&para;</a></h3>
 <table>
@@ -1215,6 +1342,401 @@
 </tr>
 </tbody>
 </table>
+<style data-termynal-inline="true">
+ :root {
+   --color-bg: #252a33;
+   --color-text: #eee;
+   --color-text-subtle: #a2a2a2;
+ }
+
+ [data-termynal] {
+   max-width: 100%;
+   overflow-x: auto;
+   background: var(--color-bg);
+   color: var(--color-text);
+   font-size: 15px;
+   font-family: 'Roboto Mono', 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
+   border-radius: 4px;
+   padding: 75px 45px 35px;
+   position: relative;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+
+ [data-termynal][data-ty-macos]:before {
+   content: '';
+   position: absolute;
+   top: 15px;
+   left: 15px;
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   /* A little hack to display the window buttons in one pseudo element. */
+   background: #d9515d;
+   -webkit-box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+   box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+ }
+
+ [data-termynal][data-ty-windows]:before {
+   content: '';
+   position: absolute;
+   top: 15px;
+   left: unset;
+   right: 15px;
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   /* A little hack to display the window buttons in one pseudo element. */
+   background: #d9515d;
+   -webkit-box-shadow: -25px 0 0 #e6e6e6, -50px 0 0 #e6e6e6;
+   box-shadow: -25px 0 0 #e6e6e6, -50px 0 0 #e6e6e6;
+ }
+
+ [data-termynal]:after {
+   content: 'bash';
+   position: absolute;
+   color: var(--color-text-subtle);
+   top: 5px;
+   left: 0;
+   width: 100%;
+   text-align: center;
+ }
+
+ [data-termynal][data-ty-title]:after {
+   content: attr(data-ty-title);
+ }
+
+ button[data-terminal-control] {
+   float: right;
+   text-align: right;
+   display: block;
+   color: #aebbff;
+   background: none !important;
+   border: none;
+   padding: 0 !important;
+   cursor: pointer;
+ }
+
+ [data-ty] {
+   display: block;
+   line-height: 2;
+   white-space: pre;
+ }
+
+ [data-ty]:before {
+   /* Set up defaults and ensure empty lines are displayed. */
+   content: '';
+   display: inline-block;
+   vertical-align: middle;
+ }
+
+ [data-ty="input"]:before,
+ [data-ty-prompt]:before {
+   margin-right: 0.75em;
+   color: var(--color-text-subtle);
+ }
+
+ [data-ty="input"]:before {
+   content: '$';
+ }
+
+ [data-ty][data-ty-prompt]:before {
+   content: attr(data-ty-prompt);
+ }
+
+ [data-ty-cursor]:after {
+   content: attr(data-ty-cursor);
+   font-family: monospace;
+   margin-left: 0.5em;
+   -webkit-animation: blink 1s infinite;
+   animation: blink 1s infinite;
+ }
+
+ @-webkit-keyframes blink {
+   50% {
+     opacity: 0;
+   }
+ }
+
+ @keyframes blink {
+   50% {
+     opacity: 0;
+   }
+ }
+
+ .termynal-comment {
+   color: #4a968f;
+   font-style: italic;
+   display: block;
+ }
+
+</style>
+<script data-termynal-inline="true">
+'use strict';
+
+class Termynal {
+    /**
+     * Construct the widget's settings.
+     * @param {(string|Node)=} container - Query selector or container element.
+     * @param {Object=} options - Custom settings.
+     * @param {string} options.prefix - Prefix to use for data attributes.
+     * @param {number} options.startDelay - Delay before animation, in ms.
+     * @param {number} options.typeDelay - Delay between each typed character, in ms.
+     * @param {number} options.lineDelay - Delay between each line, in ms.
+     * @param {number} options.progressLength - Number of characters displayed as progress bar.
+     * @param {string} options.progressChar – Character to use for progress bar, defaults to █.
+     * @param {number} options.progressPercent - Max percent of progress.
+     * @param {string} options.cursor – Character to use for cursor, defaults to ▋.
+     * @param {Object[]} lineData - Dynamically loaded line data objects.
+     * @param {boolean} options.noInit - Don't initialise the animation.
+     */
+    constructor(container = '#termynal', options = {}) {
+        this.container = (typeof container === 'string') ? document.querySelector(container) : container;
+        this.pfx = `data-${options.prefix || 'ty'}`;
+        this.originalStartDelay = this.startDelay = options.startDelay
+            || parseFloat(this.container.getAttribute(`${this.pfx}-startDelay`)) || 600;
+        this.originalTypeDelay = this.typeDelay = options.typeDelay
+            || parseFloat(this.container.getAttribute(`${this.pfx}-typeDelay`)) || 90;
+        this.originalLineDelay = this.lineDelay = options.lineDelay
+            || parseFloat(this.container.getAttribute(`${this.pfx}-lineDelay`)) || 1500;
+        this.progressLength = options.progressLength
+            || parseFloat(this.container.getAttribute(`${this.pfx}-progressLength`)) || 40;
+        this.progressChar = options.progressChar
+            || this.container.getAttribute(`${this.pfx}-progressChar`) || '█';
+        this.progressPercent = options.progressPercent
+            || parseFloat(this.container.getAttribute(`${this.pfx}-progressPercent`)) || 100;
+        this.cursor = options.cursor
+            || this.container.getAttribute(`${this.pfx}-cursor`) || '▋';
+        this.lineData = this.lineDataToElements(options.lineData || []);
+        this.loadLines()
+        if (!options.noInit) this.init()
+    }
+
+    loadLines() {
+        // Load all the lines and create the container so that the size is fixed
+        // Otherwise it would be changing and the user viewport would be constantly
+        // moving as she/he scrolls
+        const finish = this.generateFinish()
+        finish.style.visibility = 'hidden'
+        this.container.appendChild(finish)
+        // Appends dynamically loaded lines to existing line elements.
+        this.lines = [...this.container.querySelectorAll(`[${this.pfx}]`)].concat(this.lineData);
+        for (let line of this.lines) {
+            line.style.visibility = 'hidden'
+            this.container.appendChild(line)
+        }
+        const restart = this.generateRestart()
+        restart.style.visibility = 'hidden'
+        this.container.appendChild(restart)
+        this.container.setAttribute('data-termynal', '');
+    }
+
+    /**
+     * Initialise the widget, get lines, clear container and start animation.
+     */
+    init() {
+        /**
+         * Calculates width and height of Termynal container.
+         * If container is empty and lines are dynamically loaded, defaults to browser `auto` or CSS.
+         */
+        const containerStyle = getComputedStyle(this.container);
+        this.container.style.width = containerStyle.width !== '0px' ?
+            containerStyle.width : undefined;
+        this.container.style.minHeight = containerStyle.height !== '0px' ?
+            containerStyle.height : undefined;
+
+        this.container.setAttribute('data-termynal', '');
+        this.container.innerHTML = '';
+        for (let line of this.lines) {
+            line.style.visibility = 'visible'
+        }
+        this.start();
+    }
+
+    /**
+     * Start the animation and rener the lines depending on their data attributes.
+     */
+    async start() {
+        this.addFinish()
+        await this._wait(this.startDelay);
+
+        for (let line of this.lines) {
+            const type = line.getAttribute(this.pfx);
+            const delay = line.getAttribute(`${this.pfx}-delay`) || this.lineDelay;
+
+            if (type == 'input') {
+                line.setAttribute(`${this.pfx}-cursor`, this.cursor);
+                await this.type(line);
+                await this._wait(delay);
+            }
+
+            else if (type == 'progress') {
+                await this.progress(line);
+                await this._wait(delay);
+            }
+
+            else {
+                this.container.appendChild(line);
+                await this._wait(delay);
+            }
+
+            line.removeAttribute(`${this.pfx}-cursor`);
+        }
+        this.addRestart()
+        this.finishElement.style.visibility = 'hidden'
+        this.lineDelay = this.originalLineDelay
+        this.typeDelay = this.originalTypeDelay
+        this.startDelay = this.originalStartDelay
+    }
+
+    generateRestart() {
+        const restart = document.createElement('button')
+        restart.onclick = (e) => {
+            e.preventDefault()
+            this.container.innerHTML = ''
+            this.init()
+        }
+        restart.setAttribute('data-terminal-control', '')
+        restart.innerHTML = "restart ↻"
+        return restart
+    }
+
+    generateFinish() {
+        const finish = document.createElement('button')
+        finish.onclick = (e) => {
+            e.preventDefault()
+            this.lineDelay = 0
+            this.typeDelay = 0
+            this.startDelay = 0
+        }
+        finish.setAttribute('data-terminal-control', '')
+        finish.innerHTML = "fast →"
+        this.finishElement = finish
+        return finish
+    }
+
+    addRestart() {
+        const restart = this.generateRestart()
+        this.container.appendChild(restart)
+    }
+
+    addFinish() {
+        const finish = this.generateFinish()
+        this.container.appendChild(finish)
+    }
+
+    /**
+     * Animate a typed line.
+     * @param {Node} line - The line element to render.
+     */
+    async type(line) {
+        const chars = [...line.textContent];
+        line.textContent = '';
+        this.container.appendChild(line);
+
+        for (let char of chars) {
+            const delay = line.getAttribute(`${this.pfx}-typeDelay`) || this.typeDelay;
+            await this._wait(delay);
+            line.textContent += char;
+        }
+    }
+
+    /**
+     * Animate a progress bar.
+     * @param {Node} line - The line element to render.
+     */
+    async progress(line) {
+        const progressLength = line.getAttribute(`${this.pfx}-progressLength`)
+            || this.progressLength;
+        const progressChar = line.getAttribute(`${this.pfx}-progressChar`)
+            || this.progressChar;
+        const chars = progressChar.repeat(progressLength);
+        const progressPercent = line.getAttribute(`${this.pfx}-progressPercent`)
+            || this.progressPercent;
+        line.textContent = '';
+        this.container.appendChild(line);
+
+        for (let i = 1; i < chars.length + 1; i++) {
+            await this._wait(this.typeDelay);
+            const percent = Math.round(i / chars.length * 100);
+            line.textContent = `${chars.slice(0, i)} ${percent}%`;
+            if (percent > progressPercent) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Helper function for animation delays, called with `await`.
+     * @param {number} time - Timeout, in ms.
+     */
+    _wait(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    /**
+     * Converts line data objects into line elements.
+     *
+     * @param {Object[]} lineData - Dynamically loaded lines.
+     * @param {Object} line - Line data object.
+     * @returns {Element[]} - Array of line elements.
+     */
+    lineDataToElements(lineData) {
+        return lineData.map(line => {
+            let div = document.createElement('div');
+            div.innerHTML = `<span ${this._attributes(line)}>${line.value || ''}</span>`;
+
+            return div.firstElementChild;
+        });
+    }
+
+    /**
+     * Helper function for generating attributes string.
+     *
+     * @param {Object} line - Line data object.
+     * @returns {string} - String of attributes.
+     */
+    _attributes(line) {
+        let attrs = '';
+        for (let prop in line) {
+            // Custom add class
+            if (prop === 'class') {
+                attrs += ` class=${line[prop]} `
+                continue
+            }
+            if (prop === 'type') {
+                attrs += `${this.pfx}="${line[prop]}" `
+            } else if (prop !== 'value') {
+                attrs += `${this.pfx}-${prop}="${line[prop]}" `
+            }
+        }
+
+        return attrs;
+    }
+}
+
+/**
+* HTML API: If current script has container(s) specified, initialise Termynal.
+*/
+if (document.currentScript.hasAttribute('data-termynal-container')) {
+    const containers = document.currentScript.getAttribute('data-termynal-container');
+    containers.split('|')
+        .forEach(container => new Termynal(container))
+}
+
+
+(function () {
+    document
+        .querySelectorAll('.termy')
+        .forEach(node => {
+            new Termynal(node, {
+                lineDelay: 500
+            });
+        });
+})()
+
+</script>
 
 
 
