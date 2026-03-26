@@ -116,7 +116,7 @@ def interactive_mode():
         lang=lang,
         engine=engine,
         token=token,
-        make_pdf=make_pdf,
+        no_pdf=not make_pdf,
         verbose=verbose,
         proxy_list=proxy_list,
         proxy_type=proxy_type,
